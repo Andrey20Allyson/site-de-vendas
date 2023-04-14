@@ -1,0 +1,40 @@
+.education-li {
+  align-items: center;
+  border-radius: 10px;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.education-instituition-img-div {
+  padding: 10px;
+}
+
+.education-instituition-img {
+  background-size: cover;
+  border-radius: 8px;
+  max-height: 80px;
+  max-width: 100%;
+}
+
+.education-li.pocket>.education-title {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-color: #0002;
+  width: 100%;
+}
+
+.education-li:not(.pocket) {
+  background-color: #0001;
+  box-shadow: -2px 2px 10px #0003;
+}
+
+.education-li:not(.pocket)>.education-instituition-img-div {
+  border-radius: 8px;
+  box-shadow: -2px 2px 10px #0002 inset;
+}

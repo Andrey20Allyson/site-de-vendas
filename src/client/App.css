@@ -1,0 +1,21 @@
+@font-face {
+  font-family: Fira Code;
+  src: url('./fonts/FiraCode-Light.ttf');
+}
+
+@media only screen and (hover: none) {
+  * {
+    cursor: default;
+  }
+}
+
+* {
+  transition:
+    background-color 600ms,
+    transform 200ms;
+}
+
+body {
+  margin: 0;
+  font-family: Fira Code;
+}

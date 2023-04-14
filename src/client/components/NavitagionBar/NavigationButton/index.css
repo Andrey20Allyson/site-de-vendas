@@ -1,0 +1,91 @@
+:root {
+  --default-background-color: #97d8bc;
+  --default-scale: 1;
+
+  --selected-background-color: #b2e0d1;
+  --selected-scale: 1.2;
+  --selected-translate-y: calc(calc(var(--selected-scale) - 1) * -50% + 1px)
+}
+
+.navbtn-body {
+  background-color: var(--default-background-color);
+  transition-property: transform background-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.navbtn-body:not(.selected):not(.pocket) {
+  cursor: pointer;
+}
+
+/* pocket */
+
+.navbtn-body.pocket {
+  flex: 1;
+  margin-left: .5px;
+  margin-right: .5px;
+  transition-duration: 200ms;
+}
+
+.navbtn-body.selected {
+  background-color: var(--selected-background-color);
+}
+
+.navbtn-body.pocket>.navbtn-title {
+  font-size: 2.6vw;
+}
+
+.navbtn-body.pocket.selected {
+  border-radius: 5px 5px 0 0;
+  transform: translate(0, -3px);
+}
+
+/* not pocket */
+
+.navbtn-body:not(.pocket) {
+  height: 40px;
+  margin: 10px 0 0;
+  border-radius: 10px 10px 0 0;
+  border-width: 1px;
+  border-color: #0002;
+  border-style: solid;
+  border-bottom-width: 0;
+  box-shadow: -2px 0px 10px #0002;
+  transition-duration: 200ms;
+}
+
+.navbtn-body.selected:not(.pocket) {
+  transform: scale(var(--selected-scale)) translate(0, var(--selected-translate-y));
+}
+
+.navbtn-body:hover:not(.pocket) {
+  transform: scale(var(--selected-scale)) translate(0, var(--selected-translate-y));
+  background-color: var(--selected-background-color);
+}
+
+.navbtn-title:not(.pocket) {
+  margin: 0;
+  color: #222;
+  transition-property: font-size;
+  transition-duration: 200ms;
+  user-select: none;
+  font-weight: bolder;
+}
+
+.navbtn-title.dark {
+  color: #ddd;
+}
+
+.navbtn-body.dark {
+  background-color: #333;
+}
+
+.navbtn-body.dark:hover {
+  background-color: #444;
+}
+
+.navbtn-body.selected.dark {
+  background-color: #525252;
+}

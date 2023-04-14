@@ -1,0 +1,12 @@
+.copybtn-body {
+  width: 25px;
+  cursor: pointer;
+}
+
+.copybtn-icon {
+  fill: #4dc2a6dc;
+}
+
+.copybtn-body.copied>.copybtn-icon {
+  fill: #467268dc;
+}

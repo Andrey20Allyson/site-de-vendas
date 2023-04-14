@@ -1,0 +1,76 @@
+.outer-layout {
+  height: 100vh;
+  display: flex;
+  box-sizing: border-box;
+  background-color: #99eecb;
+}
+
+.inner-layout {
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: -4px 7px 14px #0004;
+}
+
+.content {
+  padding: 20px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  background-color: #eee;
+}
+
+.theme-switch-container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* pocket */
+
+.outer-layout.pocket {
+  display: flex;
+}
+
+.content.pocket {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-bottom: 70px;
+}
+
+.nav-container.pocket {
+  height: 50px;
+  display: flex;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+}
+
+/* not pocket */
+
+.outer-layout:not(.pocket) {
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.content:not(.pocket) {
+  width: 70vw;
+  height: 70vh;
+}
+
+.theme-switch-container:not(.pocket) {
+  padding-right: 30px;
+}
+
+/* dark theme */
+
+.outer-layout.dark {
+  background-color: #225740;
+  color: #eee;
+}
+
+.content.dark {
+  background-color: #111;
+}

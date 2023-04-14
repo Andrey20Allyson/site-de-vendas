@@ -1,0 +1,26 @@
+.skill-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.skill-header>h3 {
+  margin-right: 10px;
+}
+
+.skill-body {
+  overflow-y: hidden;
+  transition-property: height;
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(2, 0, 0, 1);
+}
+
+.skill-body>ul {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+}
+
+.skill-container::marker {
+  color: #18aa7a;
+}
