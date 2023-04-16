@@ -1,7 +1,4 @@
-@font-face {
-  font-family: Fira Code;
-  src: url('./fonts/FiraCode-Light.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 @media only screen and (hover: none) {
   * {
@@ -17,5 +14,5 @@
 
 body {
   margin: 0;
-  font-family: Fira Code;
+  font-family: 'Fira Code';
 }

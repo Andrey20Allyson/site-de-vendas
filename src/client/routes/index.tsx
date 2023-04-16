@@ -1,8 +1,10 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import useDevLocation from "../hooks/useDevLocation";
-import { FlexibleLayout } from "../layout";
-import useRedirectPath from "../hooks/useRedirectPath";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import useDevLocation from '../hooks/useDevLocation';
+import { FlexibleLayout } from '../layout';
+import useRedirectPath from '../hooks/useRedirectPath';
+import Home from '../pages/Home';
+import Search from '../pages/Search';
 
 export function Router() {
   return (
@@ -20,7 +22,8 @@ export function AppRoutes() {
 
   return (
     <Routes>
-      
+      <Route path='/' Component={Home} />
+      <Route path='/search' Component={Search} />
     </Routes>
   )
 }
