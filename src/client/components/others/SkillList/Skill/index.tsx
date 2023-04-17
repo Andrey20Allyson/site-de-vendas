@@ -1,10 +1,10 @@
 import React, { useMemo, useRef, useState } from "react";
-import defaultParser from "../../../utils/react-node-parser";
-import { ToggleButton } from "../../ToggleButton";
+import defaultParser from "../../../../utils/react-node-parser";
+import { ToggleButton } from "../../../ToggleButton";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 import './index.css';
-import useResizeObserver, { Size } from "../../../hooks/useResizeObserver";
-import useRenders from "../../../hooks/useRenders";
+import useResizeObserver, { Size } from "../../../../hooks/useResizeObserver";
+import useRenders from "../../../../hooks/useRenders";
 
 export interface SkillProps {
   title: string;

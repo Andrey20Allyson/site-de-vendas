@@ -1,8 +1,8 @@
 import React from "react";
-import defaultParser from "../../../utils/react-node-parser";
+import defaultParser from "../../../../utils/react-node-parser";
 import './index.css';
-import { useLayoutEqualsTo } from "../../../contexts/layout";
-import { ScreenTypes } from "../../../responsivity";
+import { useLayoutEqualsTo } from "../../../../contexts/layout";
+import { ScreenTypes } from "../../../../responsivity";
 
 export enum EducationModalities {
   PRESENTIAL,

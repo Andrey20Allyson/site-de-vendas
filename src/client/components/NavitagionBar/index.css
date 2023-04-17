@@ -1,24 +1,17 @@
-.nav {
-  display: flex;
-  width: 100%;
-  border-width: 0;
-  border-style: solid;
-  border-color: #0002;
+.nav-container {
+  height: 100%;
 }
 
-.nav.pocket {
-  background-color: #81bda3;
-  border-top-width: 1px;
-  flex-direction: row;
+.nav-container>a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #eee;
+  transition: 
+  color 300ms,
+  text-shadow 300ms;
 }
 
-.nav:not(.pocket) {
-  background-color: #ddd;
-  justify-content: space-around;
-  align-items: center;
-  border-bottom: 1px;
-}
-
-.nav.dark {
-  background-color: #444;
+.nav-container>a:hover {
+  color: #fff;
+  text-shadow: 0 0 2px #fff;
 }

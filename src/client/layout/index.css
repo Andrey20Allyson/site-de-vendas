@@ -2,7 +2,6 @@
   height: 100vh;
   display: grid;
   box-sizing: border-box;
-  background-color: #eee;
 }
 
 .inner-layout {
@@ -11,55 +10,10 @@
   box-shadow: -4px 7px 14px #0004;
 }
 
-.header-body {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 2fr 1fr;
-  justify-content: center;
-  align-items: center;
-}
-
-.header-body>section {
-  display: grid;
-  height: 100%;
-  grid-template-columns: 1fr 4fr 1fr;
-  justify-items: center;
-  align-items: center;
-  background-color: #222a80;
-  color: #ddd;
-}
-
-.header-body>nav {
-  height: 100%;
-  background-color: #1b2161;
-}
-
-.header-body>nav>a {
-  color: #ddd;
-  margin: 0 10px;
-}
-
-.header-body>section>h2 {
-  margin: 0;
-}
-
-.header-body>section>.cart {
-  display: flex;
-  align-items: center;
-  height: 40px;
-}
-
-.header-body>section>.cart>p {
-  text-align: center;
-  margin: 0;
-  padding-left: 5px;
-}
-
 .content {
   padding: 20px;
   overflow-y: scroll;
   box-sizing: border-box;
-  background-color: #eee;
 }
 
 .theme-switch-container {
@@ -81,14 +35,6 @@
   flex: 1;
   flex-direction: column;
   padding-bottom: 70px;
-}
-
-.nav-container.pocket {
-  height: 50px;
-  display: flex;
-  width: 100%;
-  position: fixed;
-  bottom: 0px;
 }
 
 /* not pocket */

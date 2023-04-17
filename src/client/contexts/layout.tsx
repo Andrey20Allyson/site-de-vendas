@@ -44,3 +44,7 @@ export function useLayout() {
 export function useLayoutEqualsTo(screenType: ScreenTypes) {
   return useLayout() === screenType;
 }
+
+export function useIsPocket() {
+  return useLayoutEqualsTo(ScreenTypes.POCKET);
+}

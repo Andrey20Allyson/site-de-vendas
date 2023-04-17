@@ -7,6 +7,15 @@
   user-select: none;
   flex-direction: column;
   overflow: hidden;
+  border-width: 1px;
+  background-color: #e1e1e1;
+  color: #fff;
+  border-color: #0002;
+  border-style: solid;
+  border-radius: 20px;
+  transition:
+    transform 400ms,
+    box-shadow 400ms;
 }
 
 .category-container>div:first-child {
@@ -15,11 +24,11 @@
   display: flex;
   justify-content: center;
   background-color: #fff;
-  border-radius: 20px;
 }
 
 .category-container:hover {
-  transform: scale(1.1);
+  transform: scale(1.03);
+  box-shadow: -2px 2px 8px #0004;
 }
 
 .category-container-content {

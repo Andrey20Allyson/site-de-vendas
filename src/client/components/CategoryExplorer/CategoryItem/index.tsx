@@ -34,7 +34,7 @@ export function CategoryItem({
       <div>
         <img className='category-container-img' src={imgSrc} alt="not found" />
       </div>
-      <div className='category-container-content'>
+      <div className='category-container-content primary-bg-color'>
         <h3 className='category-container-title'>{title}</h3>
       </div>
     </section>

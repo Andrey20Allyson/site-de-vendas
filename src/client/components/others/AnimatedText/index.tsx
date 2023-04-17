@@ -1,6 +1,6 @@
 import React, { ComponentType } from 'react';
-import useAnimatedText from '../../hooks/useAnimatedText';
-import { formatText } from '../../utils/text';
+import useAnimatedText from '../../../hooks/useAnimatedText';
+import { formatText } from '../../../utils/text';
 
 export interface AnimatedTextComponentProps {
   children: string;

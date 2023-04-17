@@ -1,29 +1,17 @@
-import React, { FormEvent, ReactNode, useRef } from 'react';
+import React, { PropsWithChildren, ReactNode } from 'react';
+import Header from '../components/Header';
 import { NavigationBar } from '../components/NavitagionBar';
-import { NavigationButton } from '../components/NavitagionBar/NavigationButton';
-import { ThemeSwitch } from '../components/ThemeSwitch';
 import { LayoutProvider, useLayout } from '../contexts/layout';
 import useThemedClassName from '../hooks/useThemedClassName';
 import { ScreenTypes } from '../responsivity';
 import './index.css';
-import { SearchBar } from '../components/SearchBar';
-import { Link } from 'react-router-dom';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
-
-export interface AppNavigationBarProps {
-
-}
-
-export function AppNavigationBar() {
-  return (
-    <NavigationBar>
-
-    </NavigationBar>
-  )
-}
 
 export interface LayoutProps {
   children?: ReactNode;
+}
+
+export interface OuterLayoutProps extends LayoutProps {
+  pocket?: boolean;
 }
 
 export type LayoutMap = {
@@ -44,7 +32,7 @@ export function FlexibleLayout(props: LayoutProps) {
     <LayoutProvider>
       <LayoutSelector {...props} />
     </LayoutProvider>
-  )
+  );
 }
 
 export function LayoutSelector(props: LayoutProps) {
@@ -52,46 +40,39 @@ export function LayoutSelector(props: LayoutProps) {
 
   const Layout = selectLayout(layout);
 
-  return <Layout {...props} />
+  return <Layout {...props} />;
 }
 
-export function Header() {
+export function OuterLayout({
+  pocket,
+  children,
+}: OuterLayoutProps) {
   return (
-    <header className={useThemedClassName('header-body')}>
-      <section>
-        <h2>TecStore</h2>
-        <SearchBar />
-        <div className='cart'>
-          <AiOutlineShoppingCart size={30} />
-          <p>
-            {'+99'}
-          </p>
-        </div>
-      </section>
-      <nav>
-        <Link to='/'>Home</Link>
-      </nav>
-    </header>
-  )
+    <div className={useThemedClassName('outer-layout bg-color-1' + (pocket ? 'pocket' : ''))}>
+      {children}
+    </div>
+  );
 }
 
 export function NormalAppLayout({
   children,
 }: LayoutProps) {
   return (
-    <div className={useThemedClassName("outer-layout")}>
+    <OuterLayout>
       <Header />
-      {children}
-    </div>
-  )
+      <main>
+        {children}
+      </main>
+    </OuterLayout>
+  );
 }
 
 export function PocketAppLayout({
   children,
 }: LayoutProps) {
   return (
-    <div className={useThemedClassName("outer-layout pocket")}>
+    <OuterLayout pocket>
       {children}
-    </div>
-  )
+    </OuterLayout>
+  );
 }

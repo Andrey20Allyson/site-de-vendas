@@ -1,5 +1,5 @@
 import { Themes } from "../contexts/theme";
-import { useTheme } from "./useTheme";
+import useTheme from "./useTheme";
 
 export default function useThemedClassName(className: string) {
   const [theme] = useTheme();

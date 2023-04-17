@@ -4,7 +4,7 @@ import { AiOutlineBook } from 'react-icons/ai';
 import { useLayoutEqualsTo } from '../../../contexts/layout';
 import { ScreenTypes } from '../../../responsivity';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '../../../hooks/useTheme';
+import useTheme from '../../../hooks/useTheme';
 import { Themes } from '../../../contexts/theme';
 import useThemedClassName from '../../../hooks/useThemedClassName';
 

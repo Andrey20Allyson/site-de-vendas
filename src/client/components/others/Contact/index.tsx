@@ -1,7 +1,7 @@
 import React from "react";
-import { CopyButton } from "../CopyButton";
+import { CopyButton } from "../../CopyButton";
 import './index.css'
-import useThemedClassName from "../../hooks/useThemedClassName";
+import useThemedClassName from "../../../hooks/useThemedClassName";
 
 export interface ContactProps {
   title: string;

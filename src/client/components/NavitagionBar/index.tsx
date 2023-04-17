@@ -3,7 +3,7 @@ import { useLayout, useLayoutEqualsTo } from "../../contexts/layout";
 import { ScreenTypes } from "../../responsivity";
 import './index.css';
 import { Themes } from "../../contexts/theme";
-import { useTheme } from "../../hooks/useTheme";
+import useTheme from "../../hooks/useTheme";
 
 export interface NavigationBarProps extends React.PropsWithChildren {
   className?: string;
@@ -16,15 +16,15 @@ export function NavigationBar({
   const [theme] = useTheme();
   const pocket = useLayoutEqualsTo(ScreenTypes.POCKET);
 
-  const classNames = ['nav'];
+  const classNames = ['nav-container', 'secondary-bg-color'];
 
   if (pocket) classNames.push('pocket');
   if (className) classNames.push(className);
   if (theme === Themes.DARK) classNames.push('dark');
 
   return (
-    <div className={classNames.join(' ')}>
+    <nav className={classNames.join(' ')}>
       {children}
-    </div>
+    </nav>
   )
 }

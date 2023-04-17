@@ -6,26 +6,24 @@
   height: 60%;
 }
 
-.search-bar-input {
-  flex: 8;
-  background-color: #ddd;
+.search-input {
+  flex: 1;
   font-size: 20px;
   text-indent: 10px;
   border-style: none;
   outline: none;
 }
 
-.search-bar-btn {
-  flex: 1;
+.search-button {
+  width: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition:
     background-color 100ms;
   cursor: pointer;
-  background-color: #3860ce;
 }
 
-.search-bar-btn:hover {
-  background-color: #1f419e;
+.search-button:hover {
+  background-color: var(--hover-bg-color);
 }

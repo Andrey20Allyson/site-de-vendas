@@ -1,6 +1,6 @@
 import React from "react";
 import { Themes } from "../../contexts/theme";
-import { useTheme } from "../../hooks/useTheme";
+import useTheme from "../../hooks/useTheme";
 import { ToggleButton } from "../ToggleButton";
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import './index.css'

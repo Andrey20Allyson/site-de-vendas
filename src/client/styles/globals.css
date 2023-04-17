@@ -1,0 +1,43 @@
+:root {
+  --primary-bg-color: #222a80;
+  --secondary-bg-color: #1b2161;
+
+  --hover-bg-color: #1f419e;
+}
+
+.primary-bg-color {
+  background-color: var(--primary-bg-color);
+  color: #ddd;
+}
+
+.secondary-bg-color {
+  background-color: var(--secondary-bg-color);
+  color: #ddd;
+}
+
+.terciary-bg-color {
+  background-color: #3860ce;
+  color: #ddd;
+}
+
+.bg-color-0 {
+  background-color: #fff;
+}
+
+.bg-color-1 {
+  background-color: #eee;
+}
+
+.bg-color-2 {
+  background-color: #ddd;
+}
+
+.primary-bg-color.dark {
+  background-color: #0d144b;
+  color: #ddd;
+}
+
+.bg-color-0.dark {
+  background-color: #000;
+  color: #fff;
+}
