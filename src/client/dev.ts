@@ -15,7 +15,7 @@ eventSource.onmessage = (ev: MessageEvent<string>) => {
     if (reloaded) return;
     reloaded = true;
 
-    sessionStorage.setItem(ACTUAL_HREF, location.pathname);
+    sessionStorage.setItem(ACTUAL_HREF, location.pathname + location.search);
 
     if (location.pathname === '/') {
       location.reload()  

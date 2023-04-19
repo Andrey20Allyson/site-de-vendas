@@ -1,0 +1,24 @@
+.search-page-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.search-page-categories-section {
+  border-width: 0;
+  border-right-width: 1px;
+  border-style: solid;
+  border-color: #0002;
+  padding-left: 10px;
+}
+
+.search-page-result-section {
+  padding-left: 20px;
+}
+
+.search-page-results {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

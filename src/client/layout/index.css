@@ -24,6 +24,12 @@
   box-sizing: border-box;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
 /* pocket */
 
 .outer-layout.pocket {

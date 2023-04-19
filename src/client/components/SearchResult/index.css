@@ -1,0 +1,61 @@
+.search-result-body {
+  width: 180px;
+  min-height: 180px;
+  margin: 0 20px 20px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0002;
+  cursor: pointer;
+  user-select: none;
+}
+
+.search-result-body>img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.search-result-content {
+  padding: 10px;
+  background-color: var(--primary-bg-color);
+  color: #eee;
+}
+
+.search-result-content * {
+  margin: 0;
+}
+
+.search-result-title {
+  white-space: nowrap;
+  overflow-x: hidden;
+  margin: 0;
+  text-overflow: ellipsis;
+  color: rgb(255, 123, 0);
+}
+
+.search-result-price {
+  margin: 0;
+}
+
+.search-result-sold-text {
+  margin-right: 8px;
+  font-size: 12px;
+}
+
+.search-result-rate-text {
+  margin-left: 3px;
+  font-size: 14px;
+}
+
+.search-result-good-rate {
+  color: rgb(0, 192, 42);
+}
+
+.search-result-midle-rate {
+  color: rgb(241, 203, 31);
+}
+
+.search-result-bad-rate {
+  color: rgb(233, 49, 24);
+}

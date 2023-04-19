@@ -5,6 +5,7 @@ import { LayoutProvider, useLayout } from '../contexts/layout';
 import useThemedClassName from '../hooks/useThemedClassName';
 import { ScreenTypes } from '../responsivity';
 import './index.css';
+import { ClassNames } from '../utils/css-class-names';
 
 export interface LayoutProps {
   children?: ReactNode;
@@ -47,8 +48,15 @@ export function OuterLayout({
   pocket,
   children,
 }: OuterLayoutProps) {
+  const layoutClasses = new ClassNames()
+  .add('outer-layout')
+  .add('bg-color-1')
+  .useTheme();
+
+  if (pocket) layoutClasses.add('pocket');
+
   return (
-    <div className={useThemedClassName('outer-layout bg-color-1' + (pocket ? 'pocket' : ''))}>
+    <div className={layoutClasses.toString()}>
       {children}
     </div>
   );

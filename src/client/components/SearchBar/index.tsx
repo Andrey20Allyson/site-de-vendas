@@ -29,24 +29,22 @@ export function SearchBar() {
     }
   }
 
-  const inputClasses = new ClassNames();
+  const inputClasses = new ClassNames()
+  .useTheme()
+  .add('search-input')
+  .add('bg-color-1')
+  .toString();
 
-  inputClasses.add('search-input');
-  inputClasses.add('bg-color-1');
-
-  inputClasses.useTheme();
-
-  const buttonClasses = new ClassNames();
-
-  buttonClasses.add('search-button');
-  buttonClasses.add('terciary-bg-color');
-
-  buttonClasses.useTheme();
+  const buttonClasses = new ClassNames()
+  .useTheme()
+  .add('search-button')
+  .add('terciary-bg-color')
+  .toString();
 
   return (
     <div className='search-bar'>
-      <input onSubmit={submitHandler} onKeyDown={keyHandler} type="text" className={inputClasses.toString()} placeholder='Insira a sua busca' ref={searchRef} />
-      <div className={buttonClasses.toString()} onClick={submitHandler} >
+      <input onSubmit={submitHandler} onKeyDown={keyHandler} type="text" className={inputClasses} placeholder='Insira a sua busca' ref={searchRef} />
+      <div className={buttonClasses} onClick={submitHandler} >
         <AiOutlineSearch size={25} />
       </div>
     </div>

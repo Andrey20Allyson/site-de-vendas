@@ -6,12 +6,12 @@ export interface ClassNamesToStringOptions {
 }
 
 export class ClassNames {
-  classNames: Set<string>;
+  private classNames: Set<string>;
   
   constructor() {
     this.classNames = new Set();
   }
-  
+
   toString(options?: ClassNamesToStringOptions) {
     const {
       useTheme = false,
@@ -31,7 +31,7 @@ export class ClassNames {
       this.delete('dark');
     };
 
-    return theme;
+    return this;
   }
 
   add(className: string) {
