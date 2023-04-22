@@ -1,47 +1,11 @@
-import React, { PropsWithChildren, ReactNode } from 'react';
+import React from 'react';
 import Header from '../components/Header';
-import { NavigationBar } from '../components/NavitagionBar';
-import { LayoutProvider, useLayout } from '../contexts/layout';
-import useThemedClassName from '../hooks/useThemedClassName';
-import { ScreenTypes } from '../responsivity';
-import './index.css';
 import { ClassNames } from '../utils/css-class-names';
+import './index.css';
+import { FlexibleLayout, LayoutProps, OuterLayoutProps } from './lib/base';
 
-export interface LayoutProps {
-  children?: ReactNode;
-}
-
-export interface OuterLayoutProps extends LayoutProps {
-  pocket?: boolean;
-}
-
-export type LayoutMap = {
-  [key in ScreenTypes]: (props: LayoutProps) => JSX.Element;
-}
-
-export const layouts: LayoutMap = {
-  [ScreenTypes.NORMAL]: NormalAppLayout,
-  [ScreenTypes.POCKET]: PocketAppLayout,
-};
-
-export function selectLayout(screenType: ScreenTypes) {
-  return layouts[screenType];
-}
-
-export function FlexibleLayout(props: LayoutProps) {
-  return (
-    <LayoutProvider>
-      <LayoutSelector {...props} />
-    </LayoutProvider>
-  );
-}
-
-export function LayoutSelector(props: LayoutProps) {
-  const layout = useLayout();
-
-  const Layout = selectLayout(layout);
-
-  return <Layout {...props} />;
+export default function Layout(props: LayoutProps) {
+  return <FlexibleLayout Default={Default} Pocket={Pocket} {...props} />
 }
 
 export function OuterLayout({
@@ -62,7 +26,7 @@ export function OuterLayout({
   );
 }
 
-export function NormalAppLayout({
+export function Default({
   children,
 }: LayoutProps) {
   return (
@@ -75,7 +39,7 @@ export function NormalAppLayout({
   );
 }
 
-export function PocketAppLayout({
+export function Pocket({
   children,
 }: LayoutProps) {
   return (

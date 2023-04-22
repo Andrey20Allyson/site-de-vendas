@@ -1,10 +1,11 @@
 import React from 'react';
 import { CategoryItem, CategoryList } from '../../components/CategoryExplorer';
 import './index.css';
+import Layout from '../../layout';
 
 export default function Home() {
   return (
-    <>
+    <Layout>
       <h2 className='home-title'>Categorias</h2>
       <CategoryList>
         <CategoryItem
@@ -44,6 +45,6 @@ export default function Home() {
         />
       </CategoryList>
       <h2 className='home-title'>Promoções</h2>
-    </>
+    </Layout>
   )
 }

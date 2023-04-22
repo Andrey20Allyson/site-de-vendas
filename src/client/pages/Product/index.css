@@ -79,6 +79,7 @@
 .product-page .place-to-cart>.inputs>.confirm {
   border-style: none;
   background-color: rgb(21, 18, 197);
+  cursor: pointer;
   border-radius: 4px;
   color: #fff;
   font-size: 18px;

@@ -1,6 +1,8 @@
 node_modules/
 *.map
 dev/*
+src/client/keys/*
 
 !*.html
 !favicon.svg
+!README.md

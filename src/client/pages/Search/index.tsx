@@ -2,6 +2,7 @@ import React from 'react';
 import './index.css';
 import { ClassNames } from '../../utils/css-class-names';
 import { SearchResult } from '../../components/SearchResult';
+import Layout from '../../layout';
 
 function randomIntFromInterval(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -37,7 +38,7 @@ export default function Search({ }: SearchProps) {
     .toString();
 
   return (
-    <>
+    <Layout>
       <div className={bodyClassNames}>
         <section className={categoriesSectionClassNames}>
           <h3>Categorias</h3>
@@ -57,6 +58,6 @@ export default function Search({ }: SearchProps) {
           </div>
         </section>
       </div>
-    </>
+    </Layout>
   );
 }
