@@ -1,0 +1,28 @@
+.user-auth-outer-layout {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+}
+
+.user-auth-inner-layout {
+  width: 600px;
+  min-height: 400px;
+  background-color: #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0002;
+  box-shadow: -4px 4px 8px #0002;  
+}
+
+.user-auth-inner-layout h2 {
+  text-align: center;
+  font-size: 30px;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-color: #0004;
+  border-style: solid;
+}
