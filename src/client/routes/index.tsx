@@ -5,6 +5,7 @@ import { FlexibleLayout } from '../layout';
 import useRedirectPath from '../hooks/useRedirectPath';
 import Home from '../pages/Home';
 import Search from '../pages/Search';
+import Product from '../pages/Product';
 
 export function Router() {
   return (
@@ -24,6 +25,7 @@ export function AppRoutes() {
     <Routes>
       <Route path='/' Component={Home} />
       <Route path='/search' Component={Search} />
+      <Route path='/product/:id' Component={Product} />
     </Routes>
   )
 }

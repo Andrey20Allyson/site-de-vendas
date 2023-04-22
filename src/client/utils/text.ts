@@ -9,3 +9,12 @@ export function formatText(baseText: string, ...args: string[]) {
 
   return baseText.replace(replaceRegex, () => args[i++]);
 }
+
+const currencyFormater = Intl.NumberFormat('pt-br', {
+  currency: 'BRL',
+  style: 'currency',
+})
+
+export function formatCurrency(value: number) {
+  return currencyFormater.format(value);
+}

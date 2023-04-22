@@ -50,6 +50,7 @@ export default function Search({ }: SearchProps) {
               key={i}
               sold={434}
               price={200}
+              id={i.toString()}
               discount={40}
               title='PC Gamer - RTX 20054 RYZEN 5433U'
             />)}
