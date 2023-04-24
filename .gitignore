@@ -6,3 +6,4 @@ src/client/keys/*
 !*.html
 !favicon.svg
 !README.md
+!index.d.ts

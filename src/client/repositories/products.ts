@@ -1,24 +1,78 @@
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { QueryConstraint } from "firebase/firestore";
+import { v4 as uuid } from 'uuid';
 import z from "zod";
+import { db } from "../firebase";
+import { Reducer, callReducer } from "../utils/data-reducer";
+import { BaseRepository, RepositoryConfig } from "./base-repository";
 
-export const productSchema = z.object({
-  id: z.string(),
-  rate: z.number(),
+export const productCreationFields = {
   name: z.string(),
   desc: z.string(),
-  sold: z.number(),
   price: z.number(),
+  category: z.string(),
   sellerId: z.string(),
   discount: z.number(),
+}
+
+export const productCreationSchema = z.object({
+  ...productCreationFields,
 });
 
-export type ProductDTO = z.infer<typeof productSchema>; 
+export const productSchema = z.object({
+  ...productCreationFields,
+  stars: z.number().array(),
+  sold: z.number(),
+  id: z.string(),
+});
 
-export class ProductRepository {
-  static productsCollectionRef = collection(db, 'products');
+export interface ProductCreationDTO extends z.infer<typeof productCreationSchema> { }
+export interface ProductDTO extends z.infer<typeof productSchema> { }
 
-  static createProduct(product: ProductDTO) {
-    setDoc(doc(this.productsCollectionRef, 'index'), product);
+export interface GetProductsOptions {
+  keyNames?: string[],
+  seller?: string[],
+  category?: string,
+  limit?: number,
+}
+
+export class ProductRepository extends BaseRepository<ProductDTO> {
+  constructor(config?: RepositoryConfig) {
+    super({
+      collectionName: 'products',
+      database: db,
+      ...config,
+    });
+  }
+
+  async getProducts(options: GetProductsOptions) {
+    const constants: QueryConstraint[] = [];
+
+    return this.getDocs(...constants);
+  }
+
+  async createProduct(product: ProductCreationDTO) {
+    const productID = uuid()
+
+    await this.setDoc(`${productID}`, {
+      ...product,
+      id: productID,
+      sold: 0,
+      stars: [0, 0, 0, 0, 0],
+    });
+
+    return productID;
+  }
+
+  async changeProduct(id: string, reducer: Reducer<ProductDTO>) {
+    const product = await this.getDoc(id);
+    const productDTO: ProductDTO = productSchema.parse(product.data());
+
+    const newProduct = callReducer(reducer, productDTO);
+
+    if (newProduct.id !== product.id) throw new Error('Can\'t change the id of a product!');
+
+    return this.setDoc(product.id, newProduct);
   }
 }
+
+export const productRepository = new ProductRepository();

@@ -1,0 +1,15 @@
+.sign-in-providers {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
+
+.sign-in-providers>div {
+  display: flex;
+  cursor: pointer;
+  background-color: #eee;
+  height: min-content;
+  padding: 4px;
+  border-radius: 5px;
+  box-shadow: -2px 2px 8px #0003;
+}

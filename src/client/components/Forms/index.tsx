@@ -2,17 +2,17 @@ import React, { ChangeEvent, useMemo, useRef, useState } from 'react';
 import { FormsField, FormsFieldProps } from './FormsField';
 import './index.css';
 
-export type FormData = Record<string, string>;
+export type FormsData = Record<string, string | undefined>;
 
 export interface FormsProps {
   itens?: FormsFieldProps[];
-  onSubmit?: (data: FormData) => void;
+  onSubmit?: (data: FormsData) => void;
 }
 
 export function Forms({
   itens
 }: FormsProps) {
-  const fieldsData = useMemo<FormData>(() => ({}), [itens]);
+  const fieldsData = useMemo<FormsData>(() => ({}), [itens]);
 
   const fieldElements = itens?.map((entry, index) => {
     const changeHandler = bindChangeHandler(entry);

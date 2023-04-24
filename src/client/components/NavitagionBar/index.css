@@ -6,9 +6,9 @@
   margin: 0 10px;
   text-decoration: none;
   color: #eee;
-  transition: 
-  color 300ms,
-  text-shadow 300ms;
+  transition:
+    color 300ms,
+    text-shadow 300ms;
 }
 
 .nav-container>a:hover {
