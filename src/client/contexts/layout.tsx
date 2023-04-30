@@ -3,6 +3,8 @@ import { ScreenTypes } from "../responsivity";
 import { useEffect, useState } from 'react';
 import { classifyScreen } from '../responsivity';
 
+const LayoutContext = createContext(ScreenTypes.NORMAL);
+
 export function useScreenType() {
   const [screenType, setScreenType] = useState(classifyScreen(innerWidth));
 
@@ -22,8 +24,6 @@ export function useScreenType() {
 
   return screenType;
 }
-
-const LayoutContext = createContext(ScreenTypes.NORMAL);
 
 export function LayoutProvider({
   children,

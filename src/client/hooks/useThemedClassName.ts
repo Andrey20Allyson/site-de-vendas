@@ -1,8 +1,8 @@
-import { Themes } from "../contexts/theme";
-import useTheme from "./useTheme";
+import { useAppSelector } from "../app/hooks";
+import { Themes, themeSelector } from "../app/slices/theme";
 
 export default function useThemedClassName(className: string) {
-  const [theme] = useTheme();
+  const theme = useAppSelector(themeSelector);
 
   if (theme === Themes.DARK) className += ' dark'; 
   

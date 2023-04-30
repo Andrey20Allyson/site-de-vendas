@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 import { Router } from './routes';
-import { ThemeProvider } from './contexts/theme';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 export default function App() {
   return (
-    <ThemeProvider>
+    <Provider store={store}>
       <Router />
-    </ThemeProvider>
+    </Provider>
   )
 }

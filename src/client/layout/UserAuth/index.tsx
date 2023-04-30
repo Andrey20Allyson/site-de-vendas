@@ -1,9 +1,7 @@
 import React from 'react';
-import './index.css';
-import { FlexibleLayout, LayoutProps } from '../lib/base';
 import { ClassNames } from '../../utils/css-class-names';
-import useTheme from '../../hooks/useTheme';
-import { Themes } from '../../contexts/theme';
+import { FlexibleLayout, LayoutProps } from '../lib/base';
+import './index.css';
 
 export default function Layout(props: LayoutProps) {
   return <FlexibleLayout Default={Default} Pocket={Pocket} {...props} />

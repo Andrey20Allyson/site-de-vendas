@@ -1,5 +1,7 @@
-import { Themes } from "../contexts/theme";
-import useTheme from "../hooks/useTheme";
+import { Themes, themeSelector } from "../app/slices/theme";
+import { useAppSelector } from "../app/hooks";
+import { useLayout } from "../contexts/layout";
+import { ScreenTypes } from "../responsivity";
 
 export interface ClassNamesToStringOptions {
   useTheme?: boolean;
@@ -22,8 +24,18 @@ export class ClassNames {
     return Array.from(this.classNames).join(' ');
   }
 
+  useLayout() {
+    const layout = useLayout();
+
+    if (layout === ScreenTypes.POCKET) {
+      this.add('pocket');
+    }
+
+    return this;
+  }
+
   useTheme() {
-    const [theme] = useTheme();
+    const theme = useAppSelector(themeSelector);
 
     if (theme === Themes.DARK) {
       this.add('dark');

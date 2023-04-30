@@ -4,9 +4,9 @@ import { AiOutlineBook } from 'react-icons/ai';
 import { useLayoutEqualsTo } from '../../../contexts/layout';
 import { ScreenTypes } from '../../../responsivity';
 import { useNavigate } from 'react-router-dom';
-import useTheme from '../../../hooks/useTheme';
-import { Themes } from '../../../contexts/theme';
+import { Themes } from '../../../app/slices/theme';
 import useThemedClassName from '../../../hooks/useThemedClassName';
+import { ClassNames } from '../../../utils/css-class-names';
 
 export interface NavigationButtonProps {
   title: string;
@@ -23,13 +23,6 @@ export function NavigationButton({
   onNavigate = useNavigate(),
   selected = location.pathname === href,
 }: NavigationButtonProps) {
-  const pocket = useLayoutEqualsTo(ScreenTypes.POCKET);
-  const [theme] = useTheme();
-
-  const bodyClasses = [
-    'navbtn-body',
-  ];
-
   function clickHandler(ev: React.MouseEvent<HTMLDivElement>) {
     onPress?.();
 
@@ -38,13 +31,16 @@ export function NavigationButton({
     };
   }
 
-  if (pocket) bodyClasses.push('pocket');
-  if (selected) bodyClasses.push('selected');
-  if (theme === Themes.DARK) bodyClasses.push('dark');
+  const bodyClasses = new ClassNames()
+    .add('navbtn-body')
+    .useLayout()
+    .useTheme();
+
+  if (selected) bodyClasses.add('selected');
 
   return (
     <div
-      className={bodyClasses.join(' ')}
+      className={bodyClasses.toString()}
       onClick={clickHandler}>
       <p
         className={useThemedClassName('navbtn-title')}>
