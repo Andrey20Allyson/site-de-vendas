@@ -1,11 +1,12 @@
 import React from "react";
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { Themes, changeTheme, themeSelector } from "../../app/slices/theme";
+import { changeTheme, themeSelector } from "../../app/slices/theme";
 import { useLayoutEqualsTo } from "../../contexts/layout";
 import { ScreenTypes } from "../../responsivity";
 import { ToggleButton } from "../ToggleButton";
 import './index.css';
+import { Themes } from "../../app/features/theme";
 
 export interface ThemeSwitchProps {
 

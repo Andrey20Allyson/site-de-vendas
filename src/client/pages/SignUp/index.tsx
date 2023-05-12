@@ -1,14 +1,26 @@
-import React from 'react';
-import './index.css';
-import Layout from '../../layout/UserAuth';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthErrorMessages, authErrorHandler, authValidator, userAuth } from '../../auth';
 import { Forms, FormsData } from '../../components/Forms';
-import { Link } from 'react-router-dom';
+import Layout from '../../layout/UserAuth';
+import './index.css';
 
-export interface SignUpProps { }
+export default function SignUp() {
+  const navigate = useNavigate();
+  const [errorMessages, setErrorMessages] = useState<AuthErrorMessages>({});
 
-export default function SignUp({ }: SignUpProps) {
-  function submitHander(data: FormsData) {
+  async function submitHander(data: FormsData) {
+    try {
+      const { email, password } = authValidator.validateSignUpInput(data);
 
+      await userAuth.signUpWithEmailAndPassword(email, password);
+
+      navigate('/');
+    } catch (err) {
+      let newErrorMessages = authErrorHandler.handle(err);
+
+      setErrorMessages(newErrorMessages);
+    }
   }
 
   return (
@@ -19,15 +31,18 @@ export default function SignUp({ }: SignUpProps) {
           itens={[{
             title: 'Email',
             name: 'email',
-            type: 'text'
+            type: 'text',
+            errorMessage: errorMessages.email,
           }, {
             title: 'Senha',
             name: 'password',
             type: 'password',
+            errorMessage: errorMessages.password,
           }, {
             title: 'Repita a Senha',
             name: 'repeatPassword',
             type: 'password',
+            errorMessage: errorMessages.repeatPassword,
           }, {
             value: 'Criar Conta',
             type: 'submit',

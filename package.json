@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "build": "tsx src/scripts/build.ts",
     "dev": "tsx src/scripts/dev.ts",
     "serve": "tsx src/scripts/serve.ts"
@@ -21,6 +21,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "uuid": "^9.0.0",
+    "vitest": "^0.31.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {

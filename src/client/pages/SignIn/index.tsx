@@ -1,10 +1,10 @@
-import React, { HTMLInputTypeAttribute, HTMLProps } from 'react';
-import './index.css';
-import { Link } from 'react-router-dom';
-import Layout from '../../layout/UserAuth';
-import { Forms, FormsData } from '../../components/Forms';
+import React, { useState } from 'react';
 import { BsGoogle } from 'react-icons/bs';
-import { userAuth } from '../../auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthErrorMessages, authErrorHandler, authValidator, userAuth } from '../../auth';
+import { Forms, FormsData } from '../../components/Forms';
+import Layout from '../../layout/UserAuth';
+import './index.css';
 
 export enum Provider {
   GOOGLE,
@@ -15,18 +15,30 @@ export const providersCallbacks = {
 };
 
 export default function SignIn() {
+  const [errorMessages, setErrorState] = useState<AuthErrorMessages>({});
+  const navigate = useNavigate();
+
   async function submitHander(data: FormsData) {
-    const { email, password } = data;
+    try {
+      const { email, password } = authValidator.validateSignInInput(data);
 
-    if (!email || !password) return;
+      await userAuth.signInWithEmailAndPassword(email, password);
 
+      navigate('/');
+    } catch (err) {
+      const newErrorMessages = authErrorHandler.handle(err);
+
+      setErrorState(newErrorMessages);
+    }
   }
 
   async function authWithProviderHander(provider: Provider) {
-    const result = await providersCallbacks[provider]();
-
-    console.log(result)
+    await providersCallbacks[provider]();
+    
+    navigate('/');
   }
+  
+  if (errorMessages.unknown) alert(errorMessages.unknown);
 
   return (
     <Layout>
@@ -36,11 +48,13 @@ export default function SignIn() {
           itens={[{
             title: 'Email',
             name: 'email',
-            type: 'email'
+            type: 'email',
+            errorMessage: errorMessages.email,
           }, {
             title: 'Senha',
             name: 'password',
             type: 'password',
+            errorMessage: errorMessages.password,
           }, {
             type: 'submit',
             value: 'Confirmar'

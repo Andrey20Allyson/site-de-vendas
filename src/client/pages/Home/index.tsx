@@ -2,8 +2,12 @@ import React from 'react';
 import { CategoryItem, CategoryList } from '../../components/CategoryExplorer';
 import './index.css';
 import Layout from '../../layout';
+import { useAppSelector } from '../../app/hooks';
+import { userIdSelector } from '../../app/slices/user';
 
 export default function Home() {
+  const userId = useAppSelector(userIdSelector);
+
   return (
     <Layout>
       <h2 className='home-title'>Categorias</h2>

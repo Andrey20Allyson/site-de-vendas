@@ -10,9 +10,10 @@ export interface FormsProps {
 }
 
 export function Forms({
-  itens
+  itens,
+  onSubmit,
 }: FormsProps) {
-  const fieldsData = useMemo<FormsData>(() => ({}), [itens]);
+  const fieldsData = useMemo<FormsData>(() => ({}),  []);
 
   const fieldElements = itens?.map((entry, index) => {
     const changeHandler = bindChangeHandler(entry);
@@ -28,8 +29,6 @@ export function Forms({
   });
 
   function bindChangeHandler(value: FormsFieldProps) {
-    console.log('criou')
-
     return (ev: ChangeEvent<HTMLInputElement>) => {
       const { name } = value;
       if (name) fieldsData[name] = ev.currentTarget?.value;
@@ -37,7 +36,7 @@ export function Forms({
   }
 
   function sumbitHandler() {
-    console.log(fieldsData);
+    onSubmit?.(fieldsData);
   }
 
   return (

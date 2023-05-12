@@ -1,7 +1,8 @@
-import { Themes, themeSelector } from "../app/slices/theme";
+import { themeSelector } from "../app/slices/theme";
 import { useAppSelector } from "../app/hooks";
 import { useLayout } from "../contexts/layout";
 import { ScreenTypes } from "../responsivity";
+import { Themes } from "../app/features/theme";
 
 export interface ClassNamesToStringOptions {
   useTheme?: boolean;

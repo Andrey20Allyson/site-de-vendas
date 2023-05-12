@@ -1,12 +1,8 @@
 import React from 'react';
-import './index.css';
-import { AiOutlineBook } from 'react-icons/ai';
-import { useLayoutEqualsTo } from '../../../contexts/layout';
-import { ScreenTypes } from '../../../responsivity';
 import { useNavigate } from 'react-router-dom';
-import { Themes } from '../../../app/slices/theme';
 import useThemedClassName from '../../../hooks/useThemedClassName';
 import { ClassNames } from '../../../utils/css-class-names';
+import './index.css';
 
 export interface NavigationButtonProps {
   title: string;

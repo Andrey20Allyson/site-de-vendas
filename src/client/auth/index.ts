@@ -1,7 +1,16 @@
-import { Auth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, setPersistence, browserSessionPersistence, Persistence } from 'firebase/auth';
+import {
+  Auth,
+  GoogleAuthProvider,
+  Persistence,
+  browserSessionPersistence,
+  createUserWithEmailAndPassword,
+  setPersistence,
+  signInWithEmailAndPassword,
+  signInWithPopup
+} from 'firebase/auth';
 import { auth } from '../firebase';
 
-interface UserAuthConfig {
+export interface UserAuthConfig {
   auth: Auth;
   persistence: Persistence;
   googleAuthProvider: GoogleAuthProvider;
@@ -9,7 +18,7 @@ interface UserAuthConfig {
 
 export class UserAuth {
   constructor(private config: UserAuthConfig) { }
-  
+
   async signInWithGoogle() {
     await setPersistence(this.config.auth, this.config.persistence);
 
@@ -41,3 +50,6 @@ export const userAuth = new UserAuth({
   googleAuthProvider,
   auth,
 });
+
+export * from './errors';
+export * from './validator';

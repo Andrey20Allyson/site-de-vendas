@@ -1,17 +1,19 @@
 .nav-container {
   height: 100%;
+  display: flex;
 }
 
-.nav-container>a {
+.nav-container>* {
   margin: 0 10px;
   text-decoration: none;
   color: #eee;
+  cursor: pointer;
   transition:
     color 300ms,
     text-shadow 300ms;
 }
 
-.nav-container>a:hover {
+.nav-container>*:hover {
   color: #fff;
   text-shadow: 0 0 2px #fff;
 }

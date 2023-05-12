@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userSlice from './slices/user';
+import userSlice, { changeUserId, initializeUser } from './slices/user';
 import themeReducer from './slices/theme';
+import { auth } from '../firebase';
 
 export const store = configureStore({
   reducer: {
@@ -9,7 +10,15 @@ export const store = configureStore({
   },
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+auth.onAuthStateChanged(user => {
+  const { isInitialized } = store.getState().user;
+
+  if (isInitialized) {
+    store.dispatch(changeUserId(user?.uid ?? null));
+  } else {
+    store.dispatch(initializeUser(user?.uid ?? null));
+  }
+});
+
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
