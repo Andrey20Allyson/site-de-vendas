@@ -1,0 +1,53 @@
+.options-body {
+  position: relative;
+  display: flex;
+}
+
+.options-body>* {
+  margin: 0;
+}
+
+.options {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: aliceblue;
+  border-width: 1px;
+  border-color: #0002;
+  border-style: solid;
+  border-radius: 0 0 10px 10px;
+  overflow-y: hidden;
+  height: 0;
+  bottom: 0;
+  transition: height 200ms, border-width 200ms;
+  transform: translateY(100%);
+}
+
+.options.closed {
+  border-width: 0;
+}
+
+.inner-options {
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  color: #000;
+}
+
+.open-options {
+  color: #fff;
+  font-family: 'Fira Code';
+  cursor: pointer;
+  border: 0;
+  display: flex;
+  align-items: center;
+}
+
+.open-options-arrow {
+  margin-left: 10px;
+  transition: transform 200ms;
+}
+
+.open-options-arrow.down {
+  transform: rotate(180deg);
+}

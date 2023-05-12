@@ -25,3 +25,5 @@ export function NavigationBar({
     </nav>
   )
 }
+
+export * from './Options';

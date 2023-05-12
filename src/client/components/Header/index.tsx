@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { auth } from '../../firebase';
 import useAuth from '../../hooks/useAuth';
 import useThemedClassName from '../../hooks/useThemedClassName';
-import { NavigationBar } from '../NavitagionBar';
+import { NavigationBar, Options } from '../NavitagionBar';
 import { SearchBar } from '../SearchBar';
 import './index.css';
 
@@ -23,8 +23,10 @@ export default function Header() {
         </div>
       </section>
       <NavigationBar>
-        <Link to='/'>Home</Link>
-        <AuthSection />
+        <div className='flex-row'>
+          <Link to='/'>Home</Link>
+          <AuthSection />
+        </div>
       </NavigationBar>
     </header>
   )
@@ -41,15 +43,17 @@ export function AuthSection() {
 }
 
 export function HeaderUserLinks() {
-  function exitHandler() {
+  function handleSignOut() {
     auth.signOut();
   }
-  
+
   return (
-    <>
-      <p>{auth.currentUser?.displayName}</p>
-      <p onClick={exitHandler} >Sair</p>
-    </>
+    <Options width='min-content' title='Opções'>
+      <p className='header-options-title' >{auth.currentUser?.displayName}</p>
+      <p className='option-text'>Anunciar Produto</p>
+      <p className='option-text'>Configurações</p>
+      <p className='option-text scale-with-hover' onClick={handleSignOut} >Sair</p>
+    </Options>
   )
 }
 

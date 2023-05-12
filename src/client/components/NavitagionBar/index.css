@@ -3,7 +3,8 @@
   display: flex;
 }
 
-.nav-container>* {
+.nav-container>*,
+.nav-container>div>* {
   margin: 0 10px;
   text-decoration: none;
   color: #eee;
