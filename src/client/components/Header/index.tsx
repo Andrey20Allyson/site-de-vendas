@@ -1,16 +1,15 @@
 import React from 'react';
-import './index.css';
-import useThemedClassName from '../../hooks/useThemedClassName';
-import { SearchBar } from '../SearchBar';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import Skeleton, { SkeletonProps } from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
-import { NavigationBar } from '../NavitagionBar';
-import useUserId from '../../hooks/useUserId';
 import { auth } from '../../firebase';
+import useAuth from '../../hooks/useAuth';
+import useThemedClassName from '../../hooks/useThemedClassName';
+import { NavigationBar } from '../NavitagionBar';
+import { SearchBar } from '../SearchBar';
+import './index.css';
 
 export default function Header() {
-  const userId = useUserId();
-
   return (
     <header className={useThemedClassName('header-body')}>
       <section className={useThemedClassName('primary-bg-color')}>
@@ -25,23 +24,33 @@ export default function Header() {
       </section>
       <NavigationBar>
         <Link to='/'>Home</Link>
-        {userId ? <HeaderUserLinks /> : <HeaderAuthLinks />}
+        <AuthSection />
       </NavigationBar>
     </header>
   )
 }
 
+export function AuthSection() {
+  const authState = useAuth();
+
+  if (authState.isInitialized) {
+    return authState.id ? <HeaderUserLinks /> : <HeaderAuthLinks />
+  } else {
+    return <LinksSkeleton />
+  }
+}
+
 export function HeaderUserLinks() {
+  function exitHandler() {
+    auth.signOut();
+  }
+  
   return (
     <>
       <p>{auth.currentUser?.displayName}</p>
       <p onClick={exitHandler} >Sair</p>
     </>
   )
-
-  function exitHandler() {
-    auth.signOut();
-  }
 }
 
 export function HeaderAuthLinks() {
@@ -49,6 +58,20 @@ export function HeaderAuthLinks() {
     <>
       <Link to='/sign-in'>Entrar</Link>
       <Link to='/sign-up'>Registrar</Link>
+    </>
+  )
+}
+
+export function LinksSkeleton() {
+  const sharedProps = {
+    baseColor: '#88f',
+    highlightColor: '#fff6',
+  } as SkeletonProps;
+
+  return (
+    <>
+      <Skeleton width={150} {...sharedProps} />
+      <Skeleton width={50} {...sharedProps} />
     </>
   )
 }
