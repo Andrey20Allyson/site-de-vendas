@@ -36,6 +36,11 @@
   cursor: default;
 }
 
+.header-options a {
+  text-decoration: none;
+  color: #000;
+}
+
 .option-text {
   font-size: 14px;
   text-overflow: ellipsis;

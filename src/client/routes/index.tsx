@@ -26,6 +26,7 @@ export function AppRoutes() {
       <Route path='/search' Component={Search} />
       <Route path='/sign-in' Component={SignIn} />
       <Route path='/sign-up' Component={SignUp} />
+      <Route path='/advertise' />
       <Route path='/product/:id' Component={Product} />
     </Routes>
   )
