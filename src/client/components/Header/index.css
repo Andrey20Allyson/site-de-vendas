@@ -31,6 +31,11 @@
   padding-left: 5px;
 }
 
+.header-options,
+.header-options * {
+  cursor: default;
+}
+
 .option-text {
   font-size: 14px;
   text-overflow: ellipsis;
@@ -40,4 +45,14 @@
   border-style: solid;
   border-color: #0002;
   white-space: nowrap;
+  transition: transform 200ms;
+  cursor: pointer;
+}
+
+.option-text:hover {
+  transform: scale(1.03);
+}
+
+.header-options-title {
+  cursor: pointer;
 }

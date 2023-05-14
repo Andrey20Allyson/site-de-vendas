@@ -48,11 +48,13 @@ export function HeaderUserLinks() {
   }
 
   return (
-    <Options width='min-content' title='Opções'>
-      <p className='header-options-title' >{auth.currentUser?.displayName}</p>
-      <p className='option-text'>Anunciar Produto</p>
+    <Options bodyClassName='header-options' titleClassName='header-options-title' width='min-content' title='Opções'>
+      <p className='user-name-displayer' >{auth.currentUser?.displayName}</p>
+      <Link to='/advertise'>
+        <p className='option-text'>Anunciar Produto</p>
+      </Link>
       <p className='option-text'>Configurações</p>
-      <p className='option-text scale-with-hover' onClick={handleSignOut} >Sair</p>
+      <p className='option-text' onClick={handleSignOut} >Sair</p>
     </Options>
   )
 }
