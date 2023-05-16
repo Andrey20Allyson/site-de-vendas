@@ -2,24 +2,25 @@ import { Component, HTMLComponents, InferProps, Element, HTMLProps, ElementNode,
 
 export class Renderer {
   root: HTMLElement;
-  private alternatives: Map<keyof HTMLProps, string>;
+  private static alternatives: Map<keyof HTMLProps, string> = new Map([
+    ['onClick', 'onclick'],
+  ]);;
 
   constructor(root: HTMLElement) {
     this.root = root;
-    this.alternatives = new Map([
-      ['onClick', 'onclick'],
-    ]);
   }
 
-  parseNode(node: ElementNode): Node {
+  static parseNode(node: ElementNode): Node {
     const fragment = document.createDocumentFragment();
+
+    if (!node) return fragment;
 
     fragment.append(typeof node === 'string' ? node : this.parse(node))
 
     return fragment;
   }
 
-  parseNodes(nodes: ElementNode[]): Node {
+  static parseNodes(nodes: ElementNode[]): Node {
     const fragment = document.createDocumentFragment();
 
     for (const node of nodes) {
@@ -29,7 +30,7 @@ export class Renderer {
     return fragment;
   }
 
-  parseChildren(children?: ChildrenType): Node {
+  static parseChildren(children?: ChildrenType): Node {
     if (!children)
       return document.createDocumentFragment();
 
@@ -39,11 +40,11 @@ export class Renderer {
     return this.parseNode(children)
   }
 
-  setProps(element: HTMLElement, props: HTMLProps) {
-
+  static setProps(element: HTMLElement, props: HTMLProps) {
+    
   }
 
-  parseElement(type: keyof HTMLComponents, props: ElementProps): HTMLElement {
+  static parseElement(type: keyof HTMLComponents, props: ElementProps): HTMLElement {
     const {
       children,
       style = {},
@@ -76,7 +77,7 @@ export class Renderer {
     return element;
   }
 
-  parse(element: Element): HTMLElement {
+  static parse(element: Element): HTMLElement {
     const { props, type } = element;
 
     return typeof type === 'string'
@@ -85,9 +86,11 @@ export class Renderer {
   }
 
   render(element: Element) {
-    const children = this.parse(element);
+    const children = Renderer.parse(element);
 
     this.root.replaceChildren(children);
+
+    return children;
   }
 
   static createElement<T extends Component<any> | keyof HTMLComponents>(factory: T, props: InferProps<T>) {

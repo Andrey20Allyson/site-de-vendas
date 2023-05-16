@@ -8,7 +8,7 @@ export interface Stack<T> {
 }
 
 export interface TestListener {
-  onTestFinished(result: TestResult): void;
+  handleTestFinished(result: TestResult): void;
 }
 
 export class Test {
@@ -41,7 +41,7 @@ export class Test {
       result.handleError(error);
     }
 
-    listener?.onTestFinished(result);
+    listener?.handleTestFinished(result);
 
     return result;
   }

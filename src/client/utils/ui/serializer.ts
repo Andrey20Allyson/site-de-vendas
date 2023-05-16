@@ -7,11 +7,11 @@ export class Serializer {
     this.root = root;
   }
 
-  serializeNode(node: ElementNode) {
-    return typeof node === 'string' ? node : this.serialize(node);
+  static serializeNode(node: ElementNode) {
+    return node ? typeof node === 'string' ? node : this.serialize(node) : '';
   }
 
-  serializeNodes(nodes: ElementNode[]) {
+  static serializeNodes(nodes: ElementNode[]) {
     let text = '';
 
     for (const node of nodes) {
@@ -21,7 +21,7 @@ export class Serializer {
     return text;
   }
 
-  serializeChildren(children?: ChildrenType) {
+  static serializeChildren(children?: ChildrenType) {
     if (!children)
       return '';
 
@@ -31,7 +31,7 @@ export class Serializer {
     return this.serializeNode(children);
   }
 
-  serializeElement(type: keyof HTMLComponents, props: ElementProps) {
+  static serializeElement(type: keyof HTMLComponents, props: ElementProps) {
     const {
       children,
       className,
@@ -53,7 +53,7 @@ export class Serializer {
     return `<${type}${textProps}>${htmlChildren}</${type}>`;
   }
 
-  serialize(element: Element): string {
+  static serialize(element: Element): string {
     const { props, type } = element;
 
     return typeof type === 'string'
@@ -62,6 +62,10 @@ export class Serializer {
   }
 
   render(element: Element) {
-    this.root.innerHTML = this.serialize(element);
+    const html = Serializer.serialize(element)
+
+    this.root.innerHTML = html;
+
+    return html;
   }
 }

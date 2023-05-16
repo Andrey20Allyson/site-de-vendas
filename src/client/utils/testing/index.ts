@@ -1,57 +1,19 @@
-import { TestResultText } from "./ui/components/TestResultText";
-import { Expecter } from "./expect";
-import { Test, TestCallback } from "./test";
-import { fail } from "./test-error";
-import { TestResult } from "./test-result";
+import { Renderer } from "../ui/renderer";
+import { TestDisplay } from "./components/TestDisplay";
+import { Tester } from "./tester";
 
-export function testFactory() {
-  const tests: Test[] = [];
-  const testResults: TestResult[] = [];
-  const initTime = Date.now();
+const throwError = (error: unknown) => { throw error };
 
-  let lastTestTime = Date.now();
+const root = document.getElementById('root') ?? throwError(new Error('Can\'t find element #root'));
+const renderer = new Renderer(root);
 
-  function expect<V = unknown>(value: V) {
-    return new Expecter(value, expect.fail);
-  }
+renderer.render(Renderer.createElement(TestDisplay, { results: [], timestamp: 0 }));
 
-  expect.fail = fail;
+export const tester = new Tester();
+tester.onResultChanged(results => {
+  const timestamp = tester.getTimestamp();
 
-  function test(title: string, callback: TestCallback) {
-    const test = new Test(title, callback);
+  renderer.render(Renderer.createElement(TestDisplay, { results, timestamp }));
+});
 
-    tests.push(test);
-
-    return test;
-  }
-
-  function addResult(result: TestResult) {
-    lastTestTime = Date.now();
-
-    testResults.push(result);
-
-    show();
-  }
-
-  function run() {
-    for (const test of tests) {
-      test.execute().then(addResult);
-    }
-  }
-
-  function show() {
-    const mainDiv = document.getElementById('main');
-    if (!mainDiv) throw new Error(`Main div not found!`);
-
-    mainDiv.innerHTML = testResults.map(result => {
-      return TestResultText({ result });
-    }
-    ).join('');
-
-    mainDiv.innerHTML += `<p>Finished in ${lastTestTime - initTime} ms</p>`;
-  }
-
-  return { expect, test, run };
-}
-
-export const { expect, run, test } = testFactory();
+export const { expect, test } = tester.getAPI();

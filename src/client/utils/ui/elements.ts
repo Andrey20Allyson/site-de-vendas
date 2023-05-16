@@ -60,7 +60,7 @@ export class Element<P = any, T extends Component<P> | keyof HTMLComponents = Co
   }
 }
 
-export type ElementNode = Element | string;
+export type ElementNode = Element | string | undefined;
 export type ChildrenType = ElementNode | ElementNode[];
 
 export type InferProps<C extends Component<any> | keyof HTMLComponents> = C extends Component<any> ? Parameters<C>[0] : C extends keyof HTMLComponents ? HTMLComponents[C] : unknown;
