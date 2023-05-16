@@ -1,0 +1,12 @@
+.my-button {
+  width: fit-content;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: box-shadow 500ms;
+  box-shadow: 0 0 0 #f00;
+}
+
+.my-button:hover {
+  box-shadow: 0 0 15px #f00;
+}

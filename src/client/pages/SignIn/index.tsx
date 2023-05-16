@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { BsGoogle } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthErrorMessages, authErrorHandler, authValidator, userAuth } from '../../auth';
-import { Forms, FormsData } from '../../components/Forms';
+import { Forms } from '../../components/Forms';
 import Layout from '../../layout/UserAuth';
 import './index.css';
+import { FormsField } from '../../components/Forms/FormsField';
+import { FormsGetter } from '../../components/Forms/forms-data';
 
 export enum Provider {
   GOOGLE,
@@ -18,7 +20,7 @@ export default function SignIn() {
   const [errorMessages, setErrorState] = useState<AuthErrorMessages>({});
   const navigate = useNavigate();
 
-  async function submitHander(data: FormsData) {
+  async function submitHander(data: FormsGetter) {
     try {
       const { email, password } = authValidator.validateSignInInput(data);
 
@@ -45,21 +47,11 @@ export default function SignIn() {
       <div>
         <h2>Entrar</h2>
         <Forms
-          itens={[{
-            title: 'Email',
-            name: 'email',
-            type: 'email',
-            errorMessage: errorMessages.email,
-          }, {
-            title: 'Senha',
-            name: 'password',
-            type: 'password',
-            errorMessage: errorMessages.password,
-          }, {
-            type: 'submit',
-            value: 'Confirmar'
-          }]}
-          onSubmit={submitHander} />
+          onSubmit={submitHander}>
+            <FormsField title='Email' name='email' type='email' errorMessage={errorMessages.email} />
+            <FormsField title='Senha' name='password' type='password' errorMessage={errorMessages.email} />
+            <FormsField title='Confirmar' type='submit' />
+          </Forms>
       </div>
       <div className='sign-in-providers'>
         <div onClick={() => authWithProviderHander(Provider.GOOGLE)}>

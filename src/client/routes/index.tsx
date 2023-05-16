@@ -7,6 +7,7 @@ import Search from '../pages/Search';
 import Product from '../pages/Product';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import Advertise from '../pages/Advertise';
 
 export function Router() {
   return (
@@ -26,7 +27,7 @@ export function AppRoutes() {
       <Route path='/search' Component={Search} />
       <Route path='/sign-in' Component={SignIn} />
       <Route path='/sign-up' Component={SignUp} />
-      <Route path='/advertise' />
+      <Route path='/advertise' Component={Advertise} />
       <Route path='/product/:id' Component={Product} />
     </Routes>
   )

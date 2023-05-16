@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthErrorMessages, authErrorHandler, authValidator, userAuth } from '../../auth';
-import { Forms, FormsData } from '../../components/Forms';
+import { Forms } from '../../components/Forms';
 import Layout from '../../layout/UserAuth';
 import './index.css';
+import { FormsField } from '../../components/Forms/FormsField';
+import { FormsGetter } from '../../components/Forms/forms-data';
 
 export default function SignUp() {
   const navigate = useNavigate();
   const [errorMessages, setErrorMessages] = useState<AuthErrorMessages>({});
 
-  async function submitHander(data: FormsData) {
+  async function submitHander(data: FormsGetter) {
     try {
       const { email, password } = authValidator.validateSignUpInput(data);
 
@@ -27,27 +29,12 @@ export default function SignUp() {
     <Layout>
       <div>
         <h2>Cadastrar-se</h2>
-        <Forms
-          itens={[{
-            title: 'Email',
-            name: 'email',
-            type: 'text',
-            errorMessage: errorMessages.email,
-          }, {
-            title: 'Senha',
-            name: 'password',
-            type: 'password',
-            errorMessage: errorMessages.password,
-          }, {
-            title: 'Repita a Senha',
-            name: 'repeatPassword',
-            type: 'password',
-            errorMessage: errorMessages.repeatPassword,
-          }, {
-            value: 'Criar Conta',
-            type: 'submit',
-          }]}
-          onSubmit={submitHander} />
+        <Forms onSubmit={submitHander}>
+          <FormsField title='Email' name='email' type='email' errorMessage={errorMessages.email} />
+          <FormsField title='Senha' name='password' type='password' errorMessage={errorMessages.password} />
+          <FormsField title='Repita a senha' name='repeatPassword' type='password' errorMessage={errorMessages.repeatPassword} />
+          <FormsField title='Repita a senha' type='submit' />
+        </Forms>
       </div>
       <div className='navigation-bar'>
         <Link to='/'>Home</Link>

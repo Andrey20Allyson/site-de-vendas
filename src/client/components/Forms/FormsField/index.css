@@ -28,6 +28,15 @@
   padding: 5px 0;
 }
 
+.form-field>input[type='file'] {
+  display: flex;
+  justify-content: center;
+}
+
+.form-field>input[type='file']::-webkit-file-upload-button {
+
+}
+
 .form-field>input[type='submit'],
 .form-field>input[type='button'] {
   background-color: #092cc7;

@@ -1,7 +1,6 @@
 import { AuthErrorMessages, InvalidAuthInputError } from "./errors";
 import { AuthErrors, authErrorMessages } from "./errors/messages";
-
-export type InputData = Record<string, string | undefined>;
+import type { FormsGetter } from "../components/Forms/forms-data";
 
 export interface ValidationResult {
   email: string;
@@ -9,9 +8,15 @@ export interface ValidationResult {
 }
 
 export class AuthValidator {
-  validateSignUpInput(data: InputData): ValidationResult {
-    const { email, password, repeatPassword } = data;
+  validateSignUpInput(data: FormsGetter): ValidationResult {
     const errorState: AuthErrorMessages = {};
+    let email: string | undefined, password: string | undefined, repeatPassword: string | undefined;
+
+    try {
+      email = data.getText('email');
+      password = data.getText('password');
+      repeatPassword = data.getText('repeatPassword');
+    } catch { }
 
     if (!email) {
       errorState.email = authErrorMessages.get(AuthErrors.MANDATORY_FIELD);
@@ -37,8 +42,10 @@ export class AuthValidator {
     return { email, password };
   }
 
-  validateSignInInput(data: InputData): ValidationResult {
-    const { email, password } = data;
+  validateSignInInput(data: FormsGetter): ValidationResult {
+    const email = data.getText('email');
+    const password = data.getText('password');
+    
     const errorState: AuthErrorMessages = {};
 
     if (!email) {

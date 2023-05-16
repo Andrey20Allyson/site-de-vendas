@@ -1,47 +1,58 @@
-import React, { ChangeEvent, useMemo, useRef, useState } from 'react';
-import { FormsField, FormsFieldProps } from './FormsField';
+import React, { Children, PropsWithChildren, useRef } from 'react';
+import { FormsField, FormsFieldProps, isFormsField } from './FormsField';
+import { FormsGetter, FormsStore } from './forms-data';
 import './index.css';
 
-export type FormsData = Record<string, string | undefined>;
+export type ArrayOrNot<T> = T | T[];
 
-export interface FormsProps {
-  itens?: FormsFieldProps[];
-  onSubmit?: (data: FormsData) => void;
+export interface FormsProps extends PropsWithChildren {
+  onSubmit?: (data: FormsGetter) => void;
+}
+
+export function useBindedFields() {
+  const sumbitHandlerRef = useRef<FormsProps['onSubmit']>();
+  const formsStoreRef = useRef<FormsStore>(new FormsStore());
+
+  function clickHandler() {
+    sumbitHandlerRef.current?.(formsStoreRef.current)
+  }
+
+  function getClickHandler(props: FormsFieldProps) {
+    return props.type === 'submit' ? clickHandler : undefined;
+  }
+
+  function setSubmitHandler(handler: FormsProps['onSubmit']) {
+    sumbitHandlerRef.current = handler;
+  }
+
+  function getHandlers(props: FormsFieldProps) {
+    const clickHandler = getClickHandler(props);
+    
+    return { clickHandler, formsStore: formsStoreRef.current };
+  }
+
+  return { getHandlers, setSubmitHandler }
 }
 
 export function Forms({
-  itens,
+  children,
   onSubmit,
 }: FormsProps) {
-  const fieldsData = useMemo<FormsData>(() => ({}),  []);
+  const { getHandlers, setSubmitHandler } = useBindedFields();
 
-  const fieldElements = itens?.map((entry, index) => {
-    const changeHandler = bindChangeHandler(entry);
+  setSubmitHandler(onSubmit);
 
-    return (
-      <FormsField
-        key={index}
-        onChange={changeHandler}
-        onClick={entry.type === 'submit' ? sumbitHandler : undefined}
-        {...entry}
-      />
-    );
+  const elements = Children.map(children, (child, index) => {
+    if (!isFormsField(child)) return child;
+
+    const { clickHandler, formsStore } = getHandlers(child.props);
+
+    return <FormsField key={index} onClick={clickHandler} formsSetter={formsStore} {...child.props} />
   });
-
-  function bindChangeHandler(value: FormsFieldProps) {
-    return (ev: ChangeEvent<HTMLInputElement>) => {
-      const { name } = value;
-      if (name) fieldsData[name] = ev.currentTarget?.value;
-    }
-  }
-
-  function sumbitHandler() {
-    onSubmit?.(fieldsData);
-  }
 
   return (
     <div className='form-body'>
-      {fieldElements}
+      {elements}
     </div>
   );
 }

@@ -1,9 +1,8 @@
-import express, { Express, Response, Request, RequestHandler, IRouterHandler } from 'express';
-import { RouteParameters } from 'express-serve-static-core';
 import EventEmitter from 'events';
-import { getFirstExternalIP } from './network';
-import { createTimeoutError } from '../util/promises';
+import express, { Express, Request, Response } from 'express';
 import path from 'path';
+import { createTimeoutError } from '../util/promises';
+import { getFirstExternalIP } from './network';
 
 export class Client extends EventEmitter {
   static readonly RESPONSE_HEADERS = {
@@ -87,7 +86,7 @@ export class DevServer {
     server.addHost('localhost');
 
     server._app.use(express.static(root));
-    server._app.use(DevServer.notFound(root));
+    // server._app.use(DevServer.notFound(root));
 
     const externalIP = getFirstExternalIP();
 

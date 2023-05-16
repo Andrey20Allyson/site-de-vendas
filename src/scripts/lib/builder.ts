@@ -1,5 +1,6 @@
 import { build, BuildOptions, context } from 'esbuild';
 import path from 'path';
+import alias from 'esbuild-plugin-alias';
 
 export const CLIENT_SOURCE_DIR = path.join(process.cwd(), 'src/client/');
 export const OUT_DIR = path.join(process.cwd(), 'public/');
@@ -7,6 +8,7 @@ export const DEV_OUT_DIR = path.join(process.cwd(), 'dev/');
 
 export const ENTRY_POINT = path.join(CLIENT_SOURCE_DIR, 'index.tsx');
 export const DEV_ENTRY_POINT = path.join(CLIENT_SOURCE_DIR, 'dev.ts');
+export const TEST_ENTRY_POINT = path.join(CLIENT_SOURCE_DIR, 'test.ts');
 export const NOT_FOUND_ENTRY_POINT = path.join(CLIENT_SOURCE_DIR, '404.ts');
 
 export const TSCONFIG_FILE = path.join(CLIENT_SOURCE_DIR, 'tsconfig.json');
@@ -31,7 +33,12 @@ export const bundleOptions = createBuildOptions({
     '.png': 'file',
     '.ico': 'file',
     '.ttf': 'file',
-  }
+  },
+  plugins: [
+    alias({
+      'mocha': path.join(process.cwd(), 'node_modules/mocha/mocha.js'),
+    }),
+  ],
 });
 
 export const devBundleOptions = createBuildOptions({
@@ -41,6 +48,7 @@ export const devBundleOptions = createBuildOptions({
   outdir: DEV_OUT_DIR,
   entryPoints: [
     DEV_ENTRY_POINT,
+    TEST_ENTRY_POINT,
     NOT_FOUND_ENTRY_POINT,
   ],
 });

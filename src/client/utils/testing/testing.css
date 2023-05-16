@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+html {
+  background-color: #1a1a1a;
+  font-family: 'Fira Code';
+}
+
+p {
+  color: #eee;
+}
+
+.test-body {
+  background-color: #2c2c2c;
+  padding: 5px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #fff4;
+  margin: 10px 0;
+}
+
+.test-title {
+  font-weight: 700;
+  font-size: 20px;
+  text-shadow: -1px 1px 2px #0005;
+}
+
+.test-fail-message {
+  color: rgb(255, 132, 132);
+  text-indent: 10px;
+}
+
+.success {
+  color: rgb(0, 221, 0);
+}
+
+.success::after {
+  content: ' ✔️';
+}
+
+.failure {
+  color: rgb(255, 31, 31);
+}
+
+.failure::after {
+  content: ' ❌';
+}
